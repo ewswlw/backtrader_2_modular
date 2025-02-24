@@ -1,18 +1,23 @@
 [tool.poetry]
-name = "tajana"
+name = "backtrader_2_modular"
 version = "0.1.0"
-description = "test files"
-authors = ["Your Name <you@example.com>"]
+description = "Modular backtrader implementation"
+authors = ["Your Name <your.email@example.com>"]
 license = "MIT"
 readme = "README.md"
-packages = [{include = "src"}]
+packages = [
+    { include = "src" },
+    { include = "pulling_data" }
+]
 
 [tool.poetry.dependencies]
 python = ">=3.10,<3.13"
+xbbg = "^0.7.7"
+pandas = "^2.2.0"
+pyyaml = "^6.0.1"
 vectorbt = "^0.26.2"
 yfinance = "^0.2.41"
 nbformat = "^5.10.4"
-xbbg = "^0.7.7"
 quantstats = "^0.0.62"
 ipykernel = "^6.29.5"
 plotly = "^5.23.0"
@@ -28,7 +33,6 @@ nbconvert = {extras = ["webpdf"], version = "^7.16.4"}
 notebook = "^7.2.2"
 playwright = "^1.47.0"
 sqlalchemy = "^2.0.25"
-pyyaml = "^6.0.1"
 jupyter = "^1.1.1"
 pdblp = "^0.1.8"
 seaborn = "^0.13.2"
@@ -44,7 +48,6 @@ hmmlearn = "^0.3.0"
 flaml = "^2.3.3"
 autots = "^0.6.17"
 scikit-learn = "^1.6.1"
-pandas = "<2.0.0"
 numpy = "<2.0.0"
 arch = "^7.2.0"
 torch = "^2.5.1"
