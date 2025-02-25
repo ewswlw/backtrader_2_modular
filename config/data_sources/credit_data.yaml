@@ -1,0 +1,60 @@
+# Credit Data Configuration
+configurations:
+  - name: daily_credit_data
+    description: Daily frequency credit data including excess returns and spreads
+    default_settings:
+      start_date: '2002-01-01'
+      periodicity: 'D'
+      align_start: true
+    data_mappings:
+      excess_returns:
+        I05510CA Index:
+          security: I05510CA Index
+          field: INDEX_EXCESS_RETURN_YTD
+          alias: cad_ig_er
+          description: CAD IG Excess Return
+        LF98TRUU Index:
+          security: LF98TRUU Index
+          field: INDEX_EXCESS_RETURN_YTD
+          alias: us_hy_er
+          description: US HY Excess Return
+        LUACTRUU Index:
+          security: LUACTRUU Index
+          field: INDEX_EXCESS_RETURN_YTD
+          alias: us_ig_er
+          description: US IG Excess Return
+    data_cleaning:
+      bad_data_points:
+        - date: '2005-11-15'
+          field: cad_oas
+          action: use_previous_value
+    output:
+      filename: daily_credit_data.csv
+      directory: data/processed/daily
+
+  - name: monthly_economic_indicators
+    description: Monthly frequency economic indicators
+    default_settings:
+      start_date: '2002-01-01'
+      periodicity: 'M'
+      align_start: true
+    data_mappings:
+      market_data:
+        I05510CA Index:
+          security: I05510CA Index
+          field: PX_LAST
+          alias: cad_ig_level
+          description: CAD IG Level
+        LF98TRUU Index:
+          security: LF98TRUU Index
+          field: PX_LAST
+          alias: us_hy_level
+          description: US HY Level
+        LUACTRUU Index:
+          security: LUACTRUU Index
+          field: PX_LAST
+          alias: us_ig_level
+          description: US IG Level
+    output:
+      filename: monthly_credit_data.csv
+      directory: data/processed/monthly

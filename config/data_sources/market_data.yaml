@@ -1,0 +1,79 @@
+# Market Data Configuration
+configurations:
+  - name: daily_market_and_credit_data
+    description: Daily frequency data including credit spreads (OAS), market indices, and economic indicators
+    default_settings:
+      start_date: '2002-10-01'
+      periodicity: 'D'
+      align_start: true
+    data_mappings:
+      market_data:
+        I05510CA Index:
+          security: I05510CA Index
+          field: INDEX_OAS_TSY_BP
+          alias: cad_oas
+          description: CAD IG OAS
+        LF98TRUU Index:
+          security: LF98TRUU Index
+          field: INDEX_OAS_TSY_BP
+          alias: us_hy_oas
+          description: US HY OAS
+        LUACTRUU Index:
+          security: LUACTRUU Index
+          field: INDEX_OAS_TSY_BP
+          alias: us_ig_oas
+          description: US IG OAS
+        SPTSX Index:
+          security: SPTSX Index
+          field: PX_LAST
+          alias: tsx
+          description: TSX Index
+        VIX Index:
+          security: VIX Index
+          field: PX_LAST
+          alias: vix
+          description: VIX Index
+        USYC3M30 Index:
+          security: USYC3M30 Index
+          field: PX_LAST
+          alias: us_3m_10y
+          description: US 3M-30Y Slope
+        BCMPUSGR Index:
+          security: BCMPUSGR Index
+          field: PX_LAST
+          alias: us_growth_surprises
+          description: US Growth Surprises
+        BCMPUSIF Index:
+          security: BCMPUSIF Index
+          field: PX_LAST
+          alias: us_inflation_surprises
+          description: US Inflation Surprises
+        LEI CHNG Index:
+          security: LEI CHNG Index
+          field: PX_LAST
+          alias: us_lei_yoy
+          description: US LEI YoY
+        .HARDATA G Index:
+          security: .HARDATA G Index
+          field: PX_LAST
+          alias: us_hard_data_surprises
+          description: US Hard Data Surprises
+        .ECONREGI G Index:
+          security: .ECONREGI G Index
+          field: PX_LAST
+          alias: us_economic_regime
+          description: US Economic Regime
+    data_cleaning:
+      fill_method: ffill
+      bad_data_points:
+        - field: us_lei_yoy
+          start_date: '2023-01-01'
+          end_date: '2025-02-25'
+          action: remove
+        - field: us_economic_regime
+          start_date: '2023-01-01'
+          end_date: '2025-02-25'
+          action: remove
+    output:
+      filename: daily_market_data.csv
+      directory: data/processed/daily
