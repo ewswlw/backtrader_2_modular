@@ -1,6 +1,6 @@
 # Market Data Configuration
 configurations:
-  - name: daily_market_and_credit_data
+  - name: macro
     description: Daily frequency data including credit spreads (OAS), market indices, and economic indicators
     default_settings:
       start_date: '2002-10-01'
